@@ -1,0 +1,69 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+*.out
+*.pid
+*.seed
+*.pid.lock
+
+# Build output
+dist/
+build/
+.cache/
+.temp/
+tmp/
+*.tsbuildinfo
+
+# Coverage
+coverage/
+*.lcov
+
+# dotenv environment variables
+.env
+.env.test
+.env.local
+.env.*
+
+# IDEs and editors
+.vscode/
+.idea/
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# System Files
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Test snapshots
+__snapshots__/
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# MacOS
+.AppleDouble
+.LSOverride
+
+# VSCode project folders
+.history/
+.vscode/
+
+# Git temporary files
+*.orig
+
+# AI-generated markdown drafts (optional)
+*.draft.md
