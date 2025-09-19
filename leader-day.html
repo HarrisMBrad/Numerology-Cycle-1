@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daybreak Directive: Just Develop with HTML</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: 'Roboto', system-ui, sans-serif;
+      line-height: 1.6;
+      background: radial-gradient(circle at top, #fff7d6 0%, #f0f4ff 55%, #e0f7ff 100%);
+      color: #1b2a3a;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1.5rem 2rem;
+      background: linear-gradient(180deg, rgba(255, 201, 71, 0.92) 0%, rgba(255, 244, 203, 0.9) 60%, rgba(255, 255, 255, 0.95) 100%);
+      color: #2b1d0f;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      margin: 0 0 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    header p {
+      max-width: 48rem;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(43, 29, 15, 0.25);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 20px 60px rgba(27, 42, 58, 0.15);
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #15324a;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+
+    article p {
+      margin-bottom: 1rem;
+    }
+
+    .button-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      align-items: start;
+    }
+
+    button,
+    summary,
+    select,
+    input,
+    textarea,
+    label {
+      font: inherit;
+    }
+
+    .sunrise-button {
+      padding: 0.85rem 1.6rem;
+      background: linear-gradient(135deg, #ffd36f 0%, #ff9f6f 40%, #ff6fa6 100%);
+      color: #1f1624;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 111, 166, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .sunrise-button:focus,
+    .sunrise-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(255, 111, 166, 0.45);
+    }
+
+    .daylight-card {
+      background: rgba(255, 251, 242, 0.9);
+      padding: 1.5rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 178, 71, 0.4);
+    }
+
+    details {
+      background: rgba(232, 246, 255, 0.9);
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      border: 1px solid rgba(21, 50, 74, 0.1);
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    dialog {
+      border: none;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 400px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+      background: linear-gradient(160deg, #fefefe 0%, #fff1d0 60%, #ffe2f2 100%);
+    }
+
+    dialog::backdrop {
+      background: rgba(21, 50, 74, 0.45);
+    }
+
+    form {
+      display: grid;
+      gap: 1.1rem;
+      margin-top: 1.5rem;
+    }
+
+    fieldset {
+      border: 1px solid rgba(27, 42, 58, 0.15);
+      border-radius: 12px;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    fieldset legend {
+      font-weight: 700;
+      color: #0f2233;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 0.7rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid rgba(27, 42, 58, 0.2);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    textarea {
+      min-height: 160px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .form-actions button {
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background: #15324a;
+      color: #fff;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .form-actions button[type="reset"] {
+      background: #b0bec5;
+      color: #102331;
+    }
+
+    .form-actions button:hover {
+      transform: translateY(-2px);
+      background: #1f475f;
+    }
+
+    footer {
+      padding: 2.5rem 1.5rem 3rem;
+      text-align: center;
+      background: linear-gradient(0deg, rgba(21, 50, 74, 0.95) 0%, rgba(21, 50, 74, 0.72) 60%, rgba(255, 255, 255, 0.05) 100%);
+      color: #f1f6ff;
+    }
+
+    footer p {
+      margin: 0.25rem 0;
+    }
+
+    footer strong {
+      font-family: 'Playfair Display', Georgia, serif;
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding-top: 3rem;
+      }
+
+      .tagline {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Daybreak Directive: Just Develop with HTML</h1>
+    <p>
+      Sunrise wisdom for every builder: the clearest path to ship something brilliant is to start with HTML that
+      simply works. No mid-morning dependency storms, no twilight build failures — just bright, reliable markup that
+      keeps the momentum rolling from dawn to dusk.
+    </p>
+    <div class="tagline" aria-label="Sunrise mantra">
+      <span>____"develop"</span>
+      <span>Radiate leadership energy.</span>
+      <span>Let daylight clarity guide your stack.</span>
+    </div>
+  </header>
+  <main>
+    <section aria-labelledby="morning-reality">
+      <h2 id="morning-reality">Morning Reality Check</h2>
+      <article>
+        <p>
+          Imagine the sun just cresting over the horizon while someone spends their entire sunrise ceremony fighting a
+          bloated toolchain. Why? Because they forgot the steady warmth of HTML. Meanwhile, a simple page brewed in pure
+          markup is already enjoying breakfast and gathering compliments from everyone strolling by.
+        </p>
+        <p>
+          Every time you reach for another sprawling bundle of abstractions, the day gets shorter. Skip the drama and
+          let HTML stand tall like a lighthouse at high noon. It loads fast, stays calm, and laughs gently at the idea of
+          hydration errors.
+        </p>
+        <p>
+          You call yourself a maker? Then prove you can place a button on the screen before lunchtime. No frameworks, no
+          haze — just raw daylight energy.
+        </p>
+      </article>
+      <div class="button-grid" role="list" aria-label="Button showcase">
+        <div class="daylight-card" role="listitem">
+          <h3>Simple Sun Button</h3>
+          <p>Tap into the midday directness:</p>
+          <pre><code>&lt;button&gt;Bright button&lt;/button&gt;</code></pre>
+          <button type="button" class="sunrise-button" data-button-kind="simple">Bright button</button>
+        </div>
+        <div class="daylight-card" role="listitem">
+          <h3>Glorious Noon Button</h3>
+          <p>
+            Is it beautiful? Yes. Visible? Absolutely. Drenched in golden-hour charisma? You know it. HTML is timeless,
+            and this glowing button is living proof.
+          </p>
+          <button type="button" class="sunrise-button" data-button-kind="glorious">Glorious daylight</button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="daylight-logic">
+      <h2 id="daylight-logic">High Noon Logic for Staying with HTML</h2>
+      <article>
+        <p>
+          Everyone understands HTML — your grandparents, your neighbors, even that friendly barista who opens shop at
+          sunrise. It survived dial-up, weathered the pop-up era, and still hosts the clearest experiences on the web.
+        </p>
+        <p>
+          Hydration errors? More like a reminder to hydrate yourself. Tree shaking? Sounds like gardening chores. HTML
+          avoids the jargon storm and gets straight to creating.
+        </p>
+        <p>
+          No expensive support plans. No complicated deployment sequences. Upload the file, greet the day, and keep
+          moving.
+        </p>
+      </article>
+      <details>
+        <summary>Evening reflections: why HTML stays awake</summary>
+        <ul>
+          <li>Everyone knows it, from sunrise interns to twilight executives.</li>
+          <li>Serve it anywhere — even the smallest dusk-lit server can handle it.</li>
+          <li>No need for sparkling add-ons to look polished; the light of clarity is enough.</li>
+          <li>AI helpers can sketch markup faster than you can brew a cup of tea.</li>
+          <li>Trying to build this in Assembly? That is like using a sundial to schedule a rocket launch.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section aria-labelledby="interactive">
+      <h2 id="interactive">Interactive Moments Without the Drama</h2>
+      <article>
+        <p>
+          HTML is not a silent sunrise; it knows how to sing. With built-in components, you get interactivity before the
+          morning playlist even hits its chorus. Need more? A dash of external JavaScript — not a shadowy bundle — keeps
+          the flow bright and breezy.
+        </p>
+      </article>
+      <div class="daylight-card">
+        <h3>Dawn Expander</h3>
+        <p>This section unfolds like morning light.</p>
+        <details>
+          <summary>Open for sunrise inspiration</summary>
+          <p>The day is long enough when you start with markup that cooperates.</p>
+        </details>
+      </div>
+      <div class="daylight-card">
+        <h3>Popover of Positivity</h3>
+        <p>
+          No frameworks required. Click the badge, and let HTML present a burst of midday motivation.
+        </p>
+        <button type="button" popovertarget="day-popover" class="sunrise-button" data-button-kind="popover">
+          Open the bright popover
+        </button>
+        <div id="day-popover" popover role="dialog" aria-live="polite">
+          <p>
+            You are building at the speed of daylight. Keep shipping, keep shining, keep things simple.
+          </p>
+        </div>
+      </div>
+      <div class="daylight-card">
+        <h3>Dialog for Late-Afternoon Courage</h3>
+        <p>
+          Inline JavaScript? Not today. We keep it external and breezy. Click below to summon a pep talk.
+        </p>
+        <button type="button" class="sunrise-button" data-open-dialog="true">Open the steady dialog</button>
+        <dialog aria-labelledby="dialog-title" aria-describedby="dialog-description">
+          <form method="dialog">
+            <h4 id="dialog-title">Golden Hour Advice</h4>
+            <p id="dialog-description">
+              Breathe, stretch, build. The sun sets on bloated stacks; daylight belongs to clear, maintainable HTML.
+            </p>
+            <menu>
+              <button value="close" class="sunrise-button">Close and keep building</button>
+            </menu>
+          </form>
+        </dialog>
+      </div>
+    </section>
+
+    <section aria-labelledby="forms">
+      <h2 id="forms">Forms for Every Hour of the Day</h2>
+      <article>
+        <p>
+          Whether it is dawn planning or midnight journaling, HTML forms work everywhere. They appear on tablets in
+          sunrise cafes and ancient laptops bathed in lamplight. They are the unsung schedule keepers of the web.
+        </p>
+      </article>
+      <form>
+        <fieldset>
+          <legend>Daily Input Buffet</legend>
+          <label>
+            Text input
+            <input type="text" name="text" placeholder="Greet the day with words" autocomplete="name">
+          </label>
+          <label>
+            Email input
+            <input type="email" name="email" value="sunrise@htmlbright.com" autocomplete="email">
+          </label>
+          <label>
+            Password input (8-20 characters)
+            <input type="password" name="password" minlength="8" maxlength="20" placeholder="Create a sunrise mantra">
+          </label>
+          <label>
+            Pick a number (0-100)
+            <input type="number" name="number" min="0" max="100" value="42">
+          </label>
+          <label>
+            Slide to show HTML appreciation
+            <input type="range" name="range" min="0" max="100" value="88">
+          </label>
+          <label>
+            Choose a date for your next milestone
+            <input type="date" name="date">
+          </label>
+          <label>
+            Set a time for your creative sprint
+            <input type="time" name="time">
+          </label>
+          <label>
+            Schedule the next check-in
+            <input type="datetime-local" name="datetime">
+          </label>
+          <label>
+            Select a month for your next release
+            <input type="month" name="month">
+          </label>
+          <label>
+            Pick a week for retrospective joy
+            <input type="week" name="week">
+          </label>
+          <label>
+            Choose a color palette
+            <input type="color" name="color" value="#ffd36f">
+          </label>
+          <label>
+            Upload a helpful PDF
+            <input type="file" name="file" accept="application/pdf">
+          </label>
+          <label>
+            <input type="checkbox" name="checkbox"> I can build this before sunrise
+          </label>
+          <fieldset>
+            <legend>Pick your energy source</legend>
+            <label>
+              <input type="radio" name="energy" value="tea" checked> Sunrise tea
+            </label>
+            <label>
+              <input type="radio" name="energy" value="coffee"> Noon espresso
+            </label>
+          </fieldset>
+          <label>
+            Choose your favorite productivity ritual
+            <select name="ritual">
+              <option>Organize the desk</option>
+              <option>Walk outside at lunch</option>
+              <option>Journal at twilight</option>
+            </select>
+          </label>
+          <label>
+            Share what you are building
+            <textarea name="story" placeholder="Tell the story of your shining project"></textarea>
+          </label>
+          <label>
+            Which browser is your trusty companion?
+            <input list="browsers" name="browser" placeholder="Choose a browser">
+            <datalist id="browsers">
+              <option value="Firefox"></option>
+              <option value="Chrome"></option>
+              <option value="Edge"></option>
+              <option value="Safari"></option>
+              <option value="Arc"></option>
+            </datalist>
+          </label>
+          <label>
+            Current energy level
+            <progress value="72" max="100">72%</progress>
+          </label>
+          <label>
+            How close are you to shipping?
+            <meter value="0.62" min="0" max="1" optimum="0.8">62%</meter>
+          </label>
+          <div class="form-actions">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+
+    <section aria-labelledby="html-lends">
+      <h2 id="html-lends">HTML Lending a Hand to JavaScript</h2>
+      <article>
+        <p>
+          Give an element an ID and the browser practically hands you a variable at daybreak. Open the console and try it:
+          <code>let sunshine = document.getElementById('day-popover'); sunshine;</code>. That is HTML quietly brewing
+          assistance before you even finish your latte.
+        </p>
+      </article>
+    </section>
+
+    <section aria-labelledby="wisdom">
+      <h2 id="wisdom">Words of Daylight Wisdom</h2>
+      <p>
+        This page wants you to cheer loudly for HTML, to enjoy the warmth of an honest stack, and to lead every project
+        like sunrise after a long night. It might even inspire a morning ritual where you light a candle for pure markup
+        and hum a ballad about semantic tags.
+      </p>
+      <p>
+        Dream big, develop consistently, and let daylight guide every deployment. HTML already built the reliable path —
+        step onto it and keep walking.
+      </p>
+    </section>
+  </main>
+  <footer>
+    <p><strong>Daylight Leaders Develop</strong></p>
+    <p>Crafted with bright intent and zero evening meltdowns.</p>
+  </footer>
+  <script src="leader-day.js" defer></script>
+</body>
+</html>
