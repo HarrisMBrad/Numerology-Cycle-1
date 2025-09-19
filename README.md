@@ -43,3 +43,6 @@ Then visit [http://localhost:8000/leader-day.html](http://localhost:8000/leader-
 - `'The 1-Cycle'`: Source material for Numerology Cycle 1 context.
 - `scripts/`: Automations and helpers for the broader framework.
 - `system/`: System-level resources and references.
+- `identity-tracker/`: Placeholder for daily identity reflections (see `.gitkeep`).
+- `logs/`: Centralized log storage retained via `.gitkeep`.
+
