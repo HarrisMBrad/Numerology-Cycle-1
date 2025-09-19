@@ -37,25 +37,6 @@ Then visit [http://localhost:8000/leader-day.html](http://localhost:8000/leader-
 
 ---
 
-## 🔁 Numerology Emitter Engine
-
-- **File**: `numerologyEmitterEngine.js`
-- **Purpose**: Event-driven tracker that adds symbolic context to daily tasks.
-- **Key features**:
-  - `phaseClock()` reports the current numerology phase, including symbols and focus priorities.
-  - Middleware-ready emitter (`NumerologyEmitterEngine`) for logging, analytics hooks, or future automation layers.
-  - Convenience helpers such as `trackTask()` for consistent task payloads.
-
----
-
-## 🗓️ Daily Setup Script
-
-- **File**: `scripts/setup.js`
-- **Run**: `node scripts/setup.js`
-- **Output**: Prints the current phase summary, a curated task list, and a readiness checklist that references repository rituals.
-
----
-
 ## 📂 Repository Notes
 
 - `Cycle-1_KPI_Log.md`: Tracking layer for cycle KPIs.
@@ -64,3 +45,4 @@ Then visit [http://localhost:8000/leader-day.html](http://localhost:8000/leader-
 - `system/`: System-level resources and references.
 - `identity-tracker/`: Placeholder for daily identity reflections (see `.gitkeep`).
 - `logs/`: Centralized log storage retained via `.gitkeep`.
+
